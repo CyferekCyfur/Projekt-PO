@@ -2,7 +2,7 @@ class LoadFile:
     def __init__(self, filename):
         self.filename = filename
 
-    def getFilename(self):
+    def get_filename(self):
         return self.filename
 
     def load_file(self):
@@ -10,7 +10,7 @@ class LoadFile:
         dates = []
 
         # wyciaganie krajow z pliku oraz ich danych kt
-        with open(self.getFilename(), 'r') as fp:
+        with open(self.get_filename(), 'r') as fp:
             lines = fp.readlines()
             lines_to_be_processed = lines[4:]
             for line in lines_to_be_processed:
@@ -57,5 +57,3 @@ class LoadFile:
                     dates.append(element)
             return dates, countries
 
-
-lf = LoadFile("Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")

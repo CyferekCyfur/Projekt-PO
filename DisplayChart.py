@@ -16,7 +16,6 @@ class DisplayChart(LoadFile):
             plt.plot(dates, list_of_country_values)
             plt.xticks(rotation=60)
             plt.show()
-            return 0
 
         
 
