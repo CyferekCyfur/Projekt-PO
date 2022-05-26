@@ -9,7 +9,6 @@ class LoadFile:
         countries = {}
         dates = []
 
-        # wyciaganie krajow z pliku oraz ich danych kt
         with open(self.get_filename(), 'r') as fp:
             lines = fp.readlines()
             lines_to_be_processed = lines[4:]
@@ -47,7 +46,7 @@ class LoadFile:
                 for number in list_of_strings:
                     list_of_values.append(float(number))
                 countries[country] = list_of_values
-            # wyciaganie poszczegolnych dat
+
             line_0 = lines[0]
             formatted_line_0 = line_0.strip().split(",")
             for element in formatted_line_0:

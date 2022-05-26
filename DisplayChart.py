@@ -1,12 +1,6 @@
-from LoadFile import LoadFile
 from matplotlib import pyplot as plt
 
-class DisplayChart(LoadFile):
-    def __init__(self, width, height, dpi, position_x, position_y, color, label, filename, field_width, field_height):
-        super().__init__(filename)
-        self.width = width
-        self.height = height
-        self.dpi = dpi
+class DisplayChart:
 
     def add_new_plot(self):
         file = LoadFile("Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
@@ -24,6 +18,3 @@ class DisplayChart(LoadFile):
 
     def set_top_boundary(self):
         pass
-
-dc = DisplayChart(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-dc.add_new_plot()

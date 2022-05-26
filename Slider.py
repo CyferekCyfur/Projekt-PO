@@ -1,17 +1,29 @@
-from SideButtonsPanel import SideButtonsPanel
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+import sys
+class Slider(QMainWindow):
+	def __init__(self):
+		super(Slider, self).__init__()
+		listWidget = QListWidget()
+		listWidget.resize(300,120)
 
+		listWidget.addItem("Item 1")
+		listWidget.addItem("Item 2")
+		listWidget.addItem("Item 3")
+		listWidget.addItem("Item 4")
 
-class Slider(SideButtonsPanel):
-    def __init__(self, position, top_value, bottom_value, field_width, field_height, button_height, button_width, width,
-                 height, position_x, position_y, color, label, filename):
-        super().__init__(field_width, field_height, button_height, button_width, width, height, position_x, position_y,
-                         color, label, filename)
-        self.position = position
-        self.top_value = top_value
-        self.bottom_value = bottom_value
+		listWidget.itemClicked.connect(self.Clicked) # connect itemClicked to Clicked method
 
-    def change_position(self):
-        pass
+		self.setCentralWidget(listWidget)
+        
+	def Clicked(self,item):
+		QMessageBox.information(self, "ListWidget", "You clicked: "+item.text())
 
-    def move_buttons(self):
-        pass
+def main(): 
+	app = QApplication(sys.argv)
+	w = Slider()
+	w.show()
+	sys.exit(app.exec_())
+if __name__ == '__main__':
+	main()
