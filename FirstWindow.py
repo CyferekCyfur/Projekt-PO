@@ -1,8 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+from tkinter.filedialog import askopenfilename
 
+class FirstWindow:
+    def __init__(self, filename):
+        self.filename = filename
 
-class FirstWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -35,15 +38,13 @@ class FirstWindow(object):
         self.ChooseFileButton.setText(_translate("MainWindow", "Wybierz plik"))
         self.ReadyButton.setText(_translate("MainWindow", "Gotowe"))
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = FirstWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-
-    FRP = FileReadingPanel()
-
-    ui.ChooseFileButton.clicked.connect(lambda: FRP.file_reading())
-    sys.exit(app.exec_())
+    def file_reading(self):
+        filename = askopenfilename()
+        self.set_filename(filename)
     
+    def get_filename(self):
+        return self.filename
+    
+    def set_filename(self, fn):
+        self.filename = fn
+
