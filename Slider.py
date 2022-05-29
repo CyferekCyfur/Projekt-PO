@@ -2,9 +2,9 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 import sys
-class Slider(QMainWindow):
+class window(QMainWindow):
 	def __init__(self):
-		super(Slider, self).__init__()
+		super(window, self).__init__()
 		listWidget = QListWidget()
 		listWidget.resize(300,120)
 
@@ -22,7 +22,7 @@ class Slider(QMainWindow):
 
 def main(): 
 	app = QApplication(sys.argv)
-	w = Slider()
+	w = window()
 	w.show()
 	sys.exit(app.exec_())
 if __name__ == '__main__':

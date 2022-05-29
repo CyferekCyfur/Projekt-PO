@@ -5,6 +5,9 @@ class LoadFile:
     def get_filename(self):
         return self.filename
 
+    def set_filename(self, fn):
+        self.filename = fn
+
     def load_file(self):
         countries = {}
         dates = []
@@ -55,4 +58,3 @@ class LoadFile:
                 else:
                     dates.append(element)
             return dates, countries
-
