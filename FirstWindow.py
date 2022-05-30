@@ -4,8 +4,8 @@ from MainWindow import MainWindow
 
 
 class FirstWindow():
-    def __init__(self):
-        self.ReadyButton.clicked.connect(lambda: self.closeOnReady())
+    # def __init__(self):
+    #     self.ReadyButton.clicked.connect(lambda: self.closeOnReady())
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -31,14 +31,9 @@ class FirstWindow():
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        MainWindow.setWindowTitle("MainWindow")
+        self.ChooseFileButton.setText("Wybierz plik")
+        self.ReadyButton.setText("Gotowe")
 
     def closeOnReady(self):
         self.close()
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.ChooseFileButton.setText(_translate("MainWindow", "Wybierz plik"))
-        self.ReadyButton.setText(_translate("MainWindow", "Gotowe"))

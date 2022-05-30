@@ -24,8 +24,7 @@ def main():
 
     FW.ChooseFileButton.clicked.connect(lambda: file_reading())
 
-    # FW.ReadyButton.clicked.connect(lambda: FW.open_main_window())
-    # FW.ReadyButton.clicked.connect(FW.closeOnReady())
+    FW.ReadyButton.clicked.connect(FW.closeOnReady())
 
     sys.exit(app.exec_())
 
