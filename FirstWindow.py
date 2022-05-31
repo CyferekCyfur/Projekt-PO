@@ -1,13 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 from MainWindow import MainWindow
+from eurostatfrontend import FW, DC, LF
+from tkinter.filedialog import askopenfilename
 
 
 class FirstWindow():
-    # def __init__(self):
-    #     self.ReadyButton.clicked.connect(lambda: self.closeOnReady())
 
     def setupUi(self, MainWindow):
+        self.__mainwindow = MainWindow
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
         MainWindow.setStyleSheet("background-color: rgb(61, 56, 70);")
@@ -35,5 +36,5 @@ class FirstWindow():
         self.ChooseFileButton.setText("Wybierz plik")
         self.ReadyButton.setText("Gotowe")
 
-    def closeOnReady(self):
-        self.close()
+    def close_first_window(self):
+        self.__mainwindow.close()

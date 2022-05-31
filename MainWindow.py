@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class MainWindow(object):
+class MainWindow:
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -42,15 +42,10 @@ class MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.pushButton.setText(_translate("MainWindow", "Mapa"))
-        self.pushButton_2.setText(_translate("MainWindow", "Wykresy"))
-        self.pushButton_3.setText(_translate("MainWindow", "Utwórz PDF"))
+        MainWindow.setWindowTitle("MainWindow")
+        self.pushButton.setText("Mapa")
+        self.pushButton_2.setText("Wykresy")
+        self.pushButton_3.setText("Utwórz PDF")
 
 
 if __name__ == "__main__":
