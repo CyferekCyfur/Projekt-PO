@@ -1,11 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
 from MainWindow import MainWindow
-from eurostatfrontend import FW, DC, LF
+from DisplayChart import DisplayChart
+from LoadFile import LoadFile
 from tkinter.filedialog import askopenfilename
 
 
-class FirstWindow():
+class FirstWindow(QtWidgets.QMainWindow):
 
     def setupUi(self, MainWindow):
         self.__mainwindow = MainWindow
@@ -31,10 +32,26 @@ class FirstWindow():
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-        MainWindow.setWindowTitle("MainWindow")
+        MainWindow.setWindowTitle("Załaduj plik")
         self.ChooseFileButton.setText("Wybierz plik")
         self.ReadyButton.setText("Gotowe")
 
+        # nie dziala w zaden sposob, lecz gdy to zakomentujemy i usuniemy dziedziczenie po QtWidgets.QMainWindow, a odkomentujemy linijkę 18 w mainie to zaczyna działać, jednakże wolelibyśmy, żeby wywołania akcji przycisków zawierały się w klasie, a nie w mainie
+        self.__mainwindow.ChooseFileButton.clicked.connect(
+            lambda: self.file_reading())
+        # -----------------------------------------------
+
     def close_first_window(self):
         self.__mainwindow.close()
+
+    DC = DisplayChart(None, None)
+    LF = LoadFile(None)
+    MW = MainWindow()
+
+    def file_reading(self):
+        filename = askopenfilename()
+        self.LF.set_filename(filename)
+        dates, countries = self.LF.load_file()
+        self.DC.set_dates(dates)
+        self.DC.set_countries(countries)
+        print(self.DC.get_countries())
