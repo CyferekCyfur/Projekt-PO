@@ -3,7 +3,6 @@ from FirstWindow import FirstWindow
 from MainWindow import MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
 from LoadFile import LoadFile
-from tkinter.filedialog import askopenfilename
 import sys
 
 
