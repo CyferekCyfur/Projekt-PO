@@ -33,12 +33,13 @@ class DisplayMap:
         plt.rcParams["font.size"] = 12
 
         fig = europe.plot(color="whitesmoke", edgecolor="black",
-                          cmap="Blues", vmax=max_val, vmin=min_val)
+                          cmap="Blues_r", vmax=max_val, vmin=min_val)
         fig.xaxis.set_visible(False)
         fig.yaxis.set_visible(False)
         fig.set_title("Ceny prądu w europejskich krajach",
                       fontweight="bold", fontsize=15)
 
+        plt.savefig("map.png")
         plt.show()
 
     def prepare_data(self):
@@ -53,7 +54,6 @@ class DisplayMap:
 
         self.europe = world[world.continent == "Europe"]
         self.europe = self.europe[(self.europe.name != "Russia")]
-
         polygon = Polygon([(-25, 35), (40, 35), (40, 75), (-25, 75)])
 
         self.europe = geopandas.clip(self.europe, polygon)

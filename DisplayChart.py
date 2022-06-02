@@ -46,13 +46,15 @@ class DisplayChart:
     def prepare_and_show_plot(self):
         plt.rcParams["figure.figsize"] = (12, 10)
         plt.rcParams["font.size"] = 12
+        plt.title("Ceny prądu w europejskich krajach na przestrzeni czasu")
 
         for country in self.countries.keys():
             list_of_country_values = self.countries[country]
             plt.plot(self.dates, list_of_country_values, label=country)
             plt.xticks(rotation=60)
+        # plt.legend()
+        plt.savefig("chart.png")
         plt.show()
-        plt.legend()
 
 
 if __name__ == "__main__":
