@@ -1,13 +1,12 @@
 from LoadFile import LoadFile
 import geopandas
 import matplotlib.pyplot as plt
-import matplotlib
 from shapely.geometry import Polygon
 
 
 class DisplayMap:
-    def __init__(self, dates, countries, europe, min_val, max_val):
-        self.dates = dates
+    def __init__(self, dates, countries, europe=None, min_val=None, max_val=None):
+        self.__dates = dates
         self.countries = countries
         self.europe = europe
         self.min_val = min_val
@@ -26,7 +25,7 @@ class DisplayMap:
         self.countries = cnt
 
     def set_dates(self, dts):
-        self.dates = dts
+        self.__dates = dts
 
     def setup_and_show_map(self, europe, min_val, max_val):
         plt.rcParams["figure.figsize"] = (12, 10)
@@ -47,7 +46,7 @@ class DisplayMap:
         average_price_of_electricity_in_country = {}
         for key in self.countries:
             average_price_of_electricity_in_country[key] = [
-                round(sum(self.countries[key])/len(self.dates), 3)]
+                round(sum(self.countries[key])/len(self.__dates), 3)]
 
         world = geopandas.read_file(
             geopandas.datasets.get_path("naturalearth_lowres"))
@@ -81,6 +80,6 @@ if __name__ == "__main__":
     LF = LoadFile(
         "Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
     dates, countries = LF.load_file()
-    SM = DisplayMap(dates, countries, None, None, None)
+    SM = DisplayMap(dates, countries)
     SM.prepare_data()
     SM.setup_and_show_map(SM.get_europe(), SM.get_min_val(), SM.get_max_val())

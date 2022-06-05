@@ -6,7 +6,7 @@ from LoadFile import LoadFile
 from tkinter.filedialog import askopenfilename
 
 
-class FirstWindow(QtWidgets.QMainWindow):
+class FirstWindow:
 
     def setupUi(self, MainWindow):
         self.__mainwindow = MainWindow
@@ -37,15 +37,15 @@ class FirstWindow(QtWidgets.QMainWindow):
         self.ReadyButton.setText("Gotowe")
 
         # nie dziala w zaden sposob, lecz gdy to zakomentujemy i usuniemy dziedziczenie po QtWidgets.QMainWindow, a odkomentujemy linijkę 18 w mainie to zaczyna działać, jednakże wolelibyśmy, żeby wywołania akcji przycisków zawierały się w klasie, a nie w mainie
-        self.__mainwindow.ChooseFileButton.clicked.connect(
-            lambda: self.file_reading())
+        # self.__mainwindow.ChooseFileButton.clicked.connect(
+        #     lambda: self.file_reading())
         # -----------------------------------------------
 
     def close_first_window(self):
         self.__mainwindow.close()
 
-    DC = DisplayChart(None, None)
-    LF = LoadFile(None)
+    DC = DisplayChart()
+    LF = LoadFile()
     MW = MainWindow()
 
     def file_reading(self):
@@ -54,4 +54,3 @@ class FirstWindow(QtWidgets.QMainWindow):
         dates, countries = self.LF.load_file()
         self.DC.set_dates(dates)
         self.DC.set_countries(countries)
-        print(self.DC.get_countries())

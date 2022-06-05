@@ -10,33 +10,33 @@ import sys
 
 
 class DisplayChart:
-    def __init__(self, dates, countries, country_colors):
-        self.dates = dates
-        self.countries = countries
-        self.country_colors = country_colors
+    def __init__(self, dates=None, countries=None, country_colors=None):
+        self.__dates = dates
+        self.__countries = countries
+        self.__country_colors = country_colors
 
     def get_countries(self):
-        return self.countries
+        return self.__countries
 
     def get_dates(self):
-        return self.dates
+        return self.__dates
 
     def set_countries(self, cnt):
-        self.countries = cnt
+        self.__countries = cnt
 
     def set_dates(self, dts):
-        self.dates = dts
+        self.__dates = dts
 
     def get_country_colors(self):
-        return self.country_colors
+        return self.__country_colors
 
     def set_country_colors(self, cc, element):
-        self.country_colors[element] = cc
+        self.__country_colors[element] = cc
 
     def generate_colors(self):
-        self.country_colors = deepcopy(self.countries)
+        self.__country_colors = deepcopy(self.countries)
 
-        for el in self.country_colors:
+        for el in self.__country_colors:
             r = random.randint(0, 100) / 100
             g = random.randint(0, 100) / 100
             b = random.randint(0, 100) / 100
@@ -48,9 +48,9 @@ class DisplayChart:
         plt.rcParams["font.size"] = 12
         plt.title("Ceny prądu w europejskich krajach na przestrzeni czasu")
 
-        for country in self.countries.keys():
-            list_of_country_values = self.countries[country]
-            plt.plot(self.dates, list_of_country_values, label=country)
+        for country in self.__countries.keys():
+            list_of_country_values = self.__countries[country]
+            plt.plot(self.__dates, list_of_country_values, label=country)
             plt.xticks(rotation=60)
         # plt.legend()
         plt.savefig("chart.png")
@@ -61,5 +61,5 @@ if __name__ == "__main__":
     LF = LoadFile(
         "Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
     dates, countries = LF.load_file()
-    DC = DisplayChart(dates, countries, None)
+    DC = DisplayChart(dates, countries)
     DC.prepare_and_show_plot()

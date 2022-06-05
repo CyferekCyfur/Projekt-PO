@@ -8,17 +8,17 @@ import sys
 class ListOfCountries(QMainWindow):
     def __init__(self, countries, dates):
         super(ListOfCountries, self).__init__()
-        self.countries = countries
+        self.__countries = countries
         self.dates = dates
 
     def get_countries(self):
-        return self.countries
+        return self.__countries
 
     def get_dates(self):
         return self.dates
 
     def set_countries(self, cnt):
-        self.countries = cnt
+        self.__countries = cnt
 
     def set_dates(self, dts):
         self.dates = dts
@@ -27,7 +27,7 @@ class ListOfCountries(QMainWindow):
         listWidget = QListWidget()
         listWidget.resize(300, 120)
 
-        for country in self.countries.keys():
+        for country in self.__countries.keys():
             listWidget.addItem(country)
 
         listWidget.itemClicked.connect(self.Clicked)

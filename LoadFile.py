@@ -1,5 +1,5 @@
 class LoadFile:
-    def __init__(self, filename):
+    def __init__(self, filename=None):
         self.filename = filename
 
     def get_filename(self):

@@ -1,5 +1,4 @@
 from fpdf import FPDF
-from matplotlib import pyplot as plt
 
 
 class CreatePDF(FPDF):
