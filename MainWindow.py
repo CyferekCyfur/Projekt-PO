@@ -8,20 +8,20 @@ class MainWindow:
         MainWindow.setStyleSheet("background-color: rgb(61, 56, 70);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(60, 480, 100, 50))
-        self.pushButton.setStyleSheet("background-color: rgb(119, 118, 123);")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(180, 480, 100, 50))
-        self.pushButton_2.setStyleSheet(
+        self.MapButton = QtWidgets.QPushButton(self.centralwidget)
+        self.MapButton.setGeometry(QtCore.QRect(60, 480, 100, 50))
+        self.MapButton.setStyleSheet("background-color: rgb(119, 118, 123);")
+        self.MapButton.setObjectName("MapButton")
+        self.ChartButton = QtWidgets.QPushButton(self.centralwidget)
+        self.ChartButton.setGeometry(QtCore.QRect(180, 480, 100, 50))
+        self.ChartButton.setStyleSheet(
             "background-color: rgb(119, 118, 123);")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setGeometry(QtCore.QRect(300, 480, 100, 50))
-        self.pushButton_3.setStyleSheet(
+        self.ChartButton.setObjectName("ChartButton")
+        self.GeneratePDFButton = QtWidgets.QPushButton(self.centralwidget)
+        self.GeneratePDFButton.setGeometry(QtCore.QRect(300, 480, 100, 50))
+        self.GeneratePDFButton.setStyleSheet(
             "background-color: rgb(119, 118, 123);")
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.GeneratePDFButton.setObjectName("GeneratePDFButton")
         # self.widget = ShowChart(self.centralwidget)
         # self.widget.setGeometry(QtCore.QRect(10, 10, 550, 450))
         # self.widget.setObjectName("widget")
@@ -43,9 +43,9 @@ class MainWindow:
         MainWindow.setStatusBar(self.statusbar)
 
         MainWindow.setWindowTitle("MainWindow")
-        self.pushButton.setText("Mapa")
-        self.pushButton_2.setText("Wykresy")
-        self.pushButton_3.setText("Utwórz PDF")
+        self.MapButton.setText("Mapa")
+        self.ChartButton.setText("Wykresy")
+        self.GeneratePDFButton.setText("Utwórz PDF")
 
 
 if __name__ == "__main__":

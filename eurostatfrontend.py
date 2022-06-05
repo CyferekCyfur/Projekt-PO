@@ -13,9 +13,6 @@ def main():
 
     mainwindow.show()
 
-    FW.ReadyButton.clicked.connect(lambda: FW.close_first_window())
-    FW.ChooseFileButton.clicked.connect(lambda: FW.file_reading())
-
     sys.exit(app.exec_())
 
 
