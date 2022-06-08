@@ -4,6 +4,13 @@ from DisplayChart import DisplayChart
 
 
 class MainWindow:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(MainWindow, cls).__new__(cls)
+        return cls._instance
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)

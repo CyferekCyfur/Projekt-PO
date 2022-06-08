@@ -6,10 +6,11 @@ from LoadFile import LoadFile
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
-import sys
 
 
 class DisplayChart:
+    _instance = None
+
     def __init__(self, dates=None, countries=None, country_colors=None):
         self.__dates = dates
         self.__countries = countries
@@ -55,6 +56,11 @@ class DisplayChart:
         # plt.legend()
         plt.savefig("chart.png")
         plt.show()
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(DisplayChart, cls).__new__(cls)
+        return cls._instance
 
 
 if __name__ == "__main__":
