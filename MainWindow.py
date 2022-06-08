@@ -1,4 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from CreatePDF import CreatePDF
+from DisplayChart import DisplayChart
 
 
 class MainWindow:
@@ -17,12 +19,13 @@ class MainWindow:
         self.ChartButton.setStyleSheet(
             "background-color: rgb(119, 118, 123);")
         self.ChartButton.setObjectName("ChartButton")
-        self.GeneratePDFButton = QtWidgets.QPushButton(self.centralwidget)
+        self.GeneratePDFButton = QtWidgets.QPushButton(
+            self.centralwidget, clicked=lambda: self.generate_pdf())
         self.GeneratePDFButton.setGeometry(QtCore.QRect(300, 480, 100, 50))
         self.GeneratePDFButton.setStyleSheet(
             "background-color: rgb(119, 118, 123);")
         self.GeneratePDFButton.setObjectName("GeneratePDFButton")
-        # self.widget = ShowChart(self.centralwidget)
+        # self.widget = DisplayChart(self.centralwidget)
         # self.widget.setGeometry(QtCore.QRect(10, 10, 550, 450))
         # self.widget.setObjectName("widget")
         self.horizontalSlider = QtWidgets.QSlider(self.centralwidget)
@@ -46,6 +49,10 @@ class MainWindow:
         self.MapButton.setText("Mapa")
         self.ChartButton.setText("Wykresy")
         self.GeneratePDFButton.setText("Utwórz PDF")
+
+    def generate_pdf(self):
+        pdf = CreatePDF()
+        pdf.AddToPDF("chart.png", "map.png")
 
 
 if __name__ == "__main__":
