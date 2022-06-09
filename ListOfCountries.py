@@ -50,7 +50,6 @@ def main():
 
 
 if __name__ == '__main__':
-    LF = LoadFile(
-        "Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
+    LF = LoadFile("Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
     dates, countries = LF.load_file()
     main()

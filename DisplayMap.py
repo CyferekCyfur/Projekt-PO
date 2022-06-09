@@ -12,6 +12,8 @@ class DisplayMap:
         self.min_val = min_val
         self.max_val = max_val
 
+        self.prepare_data()
+
     def get_europe(self):
         return self.europe
 
@@ -28,18 +30,15 @@ class DisplayMap:
         self.__dates = dts
 
     def setup_and_show_map(self, europe, min_val, max_val):
-        plt.rcParams["figure.figsize"] = (12, 10)
-        plt.rcParams["font.size"] = 12
-
-        fig = europe.plot(color="whitesmoke", edgecolor="black",
+        map = europe.plot(color="whitesmoke", edgecolor="black",
                           cmap="Blues_r", vmax=max_val, vmin=min_val)
-        fig.xaxis.set_visible(False)
-        fig.yaxis.set_visible(False)
-        fig.set_title("Ceny prądu w europejskich krajach",
+        map.xaxis.set_visible(False)
+        map.yaxis.set_visible(False)
+        map.set_title("Ceny prądu w europejskich krajach",
                       fontweight="bold", fontsize=15)
-
+        fig = map.get_figure()
         plt.savefig("map.png")
-        plt.show()
+        return fig
 
     def prepare_data(self):
 

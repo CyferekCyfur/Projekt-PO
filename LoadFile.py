@@ -1,6 +1,4 @@
 class LoadFile:
-    _instance = None
-
     def __init__(self, filename=None):
         self.filename = filename
 
@@ -60,8 +58,3 @@ class LoadFile:
                 else:
                     dates.append(element)
             return dates, countries
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(LoadFile, cls).__new__(cls)
-        return cls._instance

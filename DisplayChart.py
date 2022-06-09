@@ -1,16 +1,12 @@
 from matplotlib import pyplot as plt
 from copy import deepcopy
 import random
-from ListOfCountries import ListOfCountries
-from LoadFile import LoadFile
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 
 class DisplayChart:
-    _instance = None
-
     def __init__(self, dates=None, countries=None, country_colors=None):
         self.__dates = dates
         self.__countries = countries
@@ -45,27 +41,13 @@ class DisplayChart:
             self.set_country_colors(some_color, el)
 
     def prepare_and_show_plot(self):
-        plt.rcParams["figure.figsize"] = (12, 10)
-        plt.rcParams["font.size"] = 12
+        fig = plt.figure()
         plt.title("Ceny prądu w europejskich krajach na przestrzeni czasu")
 
         for country in self.__countries.keys():
             list_of_country_values = self.__countries[country]
             plt.plot(self.__dates, list_of_country_values, label=country)
-            plt.xticks(rotation=60)
+            plt.xticks(rotation=50)
         # plt.legend()
         plt.savefig("chart.png")
-        plt.show()
-
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(DisplayChart, cls).__new__(cls)
-        return cls._instance
-
-
-if __name__ == "__main__":
-    LF = LoadFile(
-        "Electricity prices for household consumers - bi-annual data (from 2007 onwards) [NRG_PC_204].csv")
-    dates, countries = LF.load_file()
-    DC = DisplayChart(dates, countries)
-    DC.prepare_and_show_plot()
+        return fig

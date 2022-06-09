@@ -1,20 +1,19 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import sys
 from MainWindow import MainWindow
-from DisplayChart import DisplayChart
-from LoadFile import LoadFile
 from tkinter.filedialog import askopenfilename
 from easygui import msgbox
 import threading
 
 
 class FirstWindow:
-    _instance = None
+    def __init__(self, filename=None):
+        self.__filename = filename
 
-    def __new__(cls):
-        if cls._instance is None:
-            cls._instance = super(FirstWindow, cls).__new__(cls)
-        return cls._instance
+    def get_filename(self):
+        return self.__filename
+
+    def set_filename(self, fn):
+        self.__filename = fn
 
     def setupUi(self, MainWindow):
         self.mainwindow = MainWindow
@@ -46,27 +45,19 @@ class FirstWindow:
         self.ChooseFileButton.setText("Wybierz plik")
         self.ReadyButton.setText("Gotowe")
 
-    DC = DisplayChart()
-    LF = LoadFile()
-    MW = MainWindow()
-
     def file_reading(self):
         filename = askopenfilename()
         if filename[-4:] != ".csv":
             msgbox("Proszę załadować poprawny plik z rozszerzeniem .csv", "Błąd")
             return
-
-        self.LF.set_filename(filename)
-        dates, countries = self.LF.load_file()
-        self.DC.set_dates(dates)
-        self.DC.set_countries(countries)
+        self.set_filename(filename)
 
     def open_main_window(self):
-        if self.DC.get_countries() == None and self.DC.get_dates() == None:
+        if self.get_filename() == None:
             msgbox("Proszę najpierw wybrać plik z rozszerzeniem .csv", "Błąd")
             return
         self.mainwindow.close()
         self.window = QtWidgets.QMainWindow()
-        self.ui = MainWindow()
+        self.ui = MainWindow(self.get_filename())
         self.ui.setupUi(self.window)
         self.window.show()
